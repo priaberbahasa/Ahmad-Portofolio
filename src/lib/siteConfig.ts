@@ -20,7 +20,7 @@ export const siteConfig = {
     linkedin: "https://www.linkedin.com/in/ahmadauliadiy",
     instagram: "https://instagram.com/ahmadauliadiyufr",
     linktree: "https://mez.ink/ahmadauliadiy",
-    github: "", // add when ready
+    github: "https://github.com/priaberbahasa",
   },
 
   // --- Education ---
@@ -67,7 +67,7 @@ export const siteConfig = {
     tools: ["Git", "LaTeX", "Three.js", "ParaView"],
   },
 
-  affiliations: ["ASCE Student Member (since 2022)"],
+  affiliations: ["ASCE Student Member — Geo-Institute (G-I) (since 2022)"],
 
   navLinks: [
     { label: "Home", href: "/" },

@@ -1,0 +1,32 @@
+---
+title: "3D DEM Simulation of Clay Particle Micromechanics with DLVO Force Models"
+date: "2025-12-01"
+description: "A research-grade discrete element simulation framework capturing physicochemical interactions between clay platelets using van der Waals, EDL, and capillary bridge forces."
+tags: ["DEM", "Clay", "DLVO", "Micromechanics", "Julia"]
+published: true
+journal: "In Progress"
+status: "in-progress"
+coAuthors: []
+---
+
+## Overview
+
+This work develops a 3D Discrete Element Method framework for simulating clay particle interactions at the microscale. Unlike conventional DEM approaches that treat particles as spheres, this framework models clay platelets with aspect ratios representative of kaolinite minerals and incorporates full DLVO physicochemical force models.
+
+## Key Contributions
+
+- Full DLVO force implementation: van der Waals attraction with Casimir-Polder retardation, electrical double layer repulsion, and capillary bridge forces for partial saturation
+- Hard wall enforcement and cell-list neighbor search for computational efficiency
+- Overdamped integration with quaternion-based rotation tracking
+- Stress tensor computation (Love-Weber formulation) and fabric tensor analysis (Oda 1972)
+- Interactive 3D visualization using Three.js
+
+## Current Results
+
+The framework correctly reproduces the expected force ordering across saturation states: partial saturation generates the strongest net attractive forces, followed by dry conditions, with fully saturated conditions producing the weakest attraction.
+
+## Future Work
+
+- Validation against published oedometer curves and triaxial test data
+- Extension to N > 500 particles for realistic void ratios
+- Critical state line verification and fabric evolution comparison with SEM data

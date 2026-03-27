@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  background-color: #FAFAF8;
+  color: #1a1a2e;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: #1e3a5f; color: white; }
+
+/* ===== Clean card style ===== */
+.card {
+  background: white;
+  border: 1px solid #e8e6e1;
+  border-radius: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  border-color: #d0cdc6;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+/* ===== Simple tag ===== */
+.tag {
+  @apply inline-block px-2.5 py-0.5 text-xs rounded-md
+         bg-page-muted text-ink-light border border-transparent;
+}
+
+/* ===== Divider ===== */
+.divider {
+  height: 1px;
+  background: #e8e6e1;
+}
+
+/* ===== Prose for MDX content ===== */
+.prose-academic h2 { @apply text-2xl font-serif text-ink mt-10 mb-4; }
+.prose-academic h3 { @apply text-lg font-serif text-ink mt-8 mb-3; }
+.prose-academic p { @apply text-ink-light leading-relaxed mb-4; }
+.prose-academic ul { @apply list-disc list-inside text-ink-light mb-4 space-y-1; }
+.prose-academic li { @apply text-ink-light; }
+.prose-academic code { @apply font-mono text-sm bg-page-muted text-navy px-1.5 py-0.5 rounded; }
+.prose-academic a { @apply text-navy underline underline-offset-2 hover:text-navy-light transition-colors; }
+.prose-academic strong { @apply text-ink font-semibold; }
+.prose-academic blockquote { @apply border-l-2 border-gold pl-4 italic text-ink-muted my-4; }

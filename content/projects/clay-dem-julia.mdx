@@ -1,0 +1,28 @@
+---
+title: "ClayDEM.jl — 3D Discrete Element Simulation Framework"
+date: "2025-11-01"
+description: "A Julia implementation of 3D DEM for clay particle micromechanics with DLVO forces, quaternion rotation, and interactive Three.js visualization."
+tags: ["Julia", "DEM", "Simulation", "Open Source"]
+published: true
+tech: ["Julia", "StaticArrays.jl", "Three.js", "HTML5"]
+github: "https://github.com/yourusername/ClayDEM.jl"
+---
+
+## Overview
+
+ClayDEM.jl is a research-grade 3D Discrete Element Method simulation framework written in Julia. It models the physicochemical interactions between clay platelets using DLVO theory.
+
+## Features
+
+- Van der Waals attraction with Casimir-Polder retardation correction
+- Electrical Double Layer (EDL) repulsion
+- Capillary bridge forces for partially saturated conditions
+- Contact mechanics with Hertz-Mindlin model
+- Quaternion-based orientation tracking
+- Love-Weber stress tensor and Oda (1972) fabric tensor
+- Cell-list neighbor search for O(N) force computation
+- Interactive 3D visualization output using Three.js
+
+## Testing
+
+A 21-test quality assurance suite covers force model accuracy, conservation properties, boundary conditions, and fabric tensor calculations. All tests pass with zero escaped particles.

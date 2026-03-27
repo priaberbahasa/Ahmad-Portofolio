@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import SectionHeading from "@/components/SectionHeading";
 import AnimatedSection from "@/components/AnimatedSection";
 import { siteConfig } from "@/lib/siteConfig";
@@ -14,13 +15,50 @@ export default function AboutPage() {
     { label: "Numerical Methods", items: siteConfig.skills.methods },
     { label: "Tools", items: siteConfig.skills.tools },
   ];
+
+  const activityPhotos = [
+    { src: "/images/activities-1.jpg", caption: "ISF-ITERA International Event" },
+    { src: "/images/organization-photos.jpg", caption: "HMS ITERA Organization" },
+    { src: "/images/activities-3.jpg", caption: "Flood Study Collaboration" },
+    { src: "/images/work-apprentice.jpg", caption: "PT MWT Engineering Apprenticeship" },
+    { src: "/images/student-exchange.jpg", caption: "Student Exchange Activities" },
+    { src: "/images/activities-2.jpg", caption: "ISF-ITERA Event" },
+  ];
+
   return (<div className="pt-20 pb-8 px-6"><div className="max-w-4xl mx-auto">
     <SectionHeading label="About" title="Ahmad Auliadi Y" subtitle="Undergraduate of Civil Engineering at ITERA — Geotechnical Engineering." />
-    <AnimatedSection><div className="prose-academic mb-14 space-y-4">
-      <p>I am a civil engineering undergraduate at <strong>Institut Teknologi Sumatera (ITERA)</strong> maintaining a <strong>3.70 GPA</strong> while actively engaged in research, organizational leadership, and professional work. My field interest is <strong>geotechnical engineering</strong>.</p>
-      <p>My undergraduate thesis investigates the <strong>effects of geometry and groundwater table position on lateral displacement of liquefied slopes</strong> using numerical methods. I have two published papers in SINTA 4-indexed journals covering bored pile foundations and jetty soil-structure interaction analysis.</p>
-      <p>Beyond academics, I have over six years of organizational experience and five years as a public speaker and writer. I am an <strong>ASCE Student Member</strong> and fluent in English at C1 level (DET 140 / TOEFL ITP 600).</p>
-    </div></AnimatedSection>
+
+    {/* Profile section with photo */}
+    <AnimatedSection>
+      <div className="flex flex-col md:flex-row gap-8 mb-14">
+        <div className="flex-shrink-0 flex justify-center md:justify-start">
+          <div className="relative w-48 h-56 rounded-lg overflow-hidden border-2 border-gray-200 shadow-sm">
+            <Image src="/images/profile.png" alt="Ahmad Auliadi Y" fill priority className="object-cover" sizes="192px" />
+          </div>
+        </div>
+        <div className="prose-academic space-y-4 flex-1">
+          <p>I am a civil engineering undergraduate at <strong>Institut Teknologi Sumatera (ITERA)</strong> maintaining a <strong>3.70 GPA</strong> while actively engaged in research, organizational leadership, and professional work. My field interest is <strong>geotechnical engineering</strong>.</p>
+          <p>My undergraduate thesis investigates the <strong>effects of geometry and groundwater table position on lateral displacement of liquefied slopes</strong> using numerical methods. I have two published papers in SINTA 4-indexed journals covering bored pile foundations and jetty soil-structure interaction analysis.</p>
+          <p>Beyond academics, I have over six years of organizational experience and five years as a public speaker and writer. I am an <strong>ASCE Student Member (Geo-Institute)</strong> and fluent in English at C1 level (DET 140 / TOEFL ITP 600).</p>
+        </div>
+      </div>
+    </AnimatedSection>
+
+    {/* Activity Photos Grid */}
+    <div className="divider mb-14"/>
+    <SectionHeading label="Gallery" title="Activities & Experiences"/>
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-14">
+      {activityPhotos.map((photo, i) => (
+        <AnimatedSection key={photo.src} delay={i * 0.06}>
+          <div className="relative aspect-[4/3] rounded-lg overflow-hidden border border-gray-200 group">
+            <Image src={photo.src} alt={photo.caption} fill className="object-cover group-hover:scale-105 transition-transform duration-300" sizes="(max-width: 768px) 50vw, 33vw" />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3">
+              <p className="text-white text-xs font-medium">{photo.caption}</p>
+            </div>
+          </div>
+        </AnimatedSection>
+      ))}
+    </div>
 
     <div className="divider mb-14"/>
     <SectionHeading label="Education" title="Academic Background"/>

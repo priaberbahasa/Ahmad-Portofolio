@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { FileText, ArrowDown } from "lucide-react";
 import { siteConfig } from "@/lib/siteConfig";
+import Image from "next/image";
 
 export default function HeroSection() {
   return (
@@ -11,9 +12,15 @@ export default function HeroSection() {
 
           {/* Photo */}
           <motion.div initial={{ opacity:0, scale:0.95 }} animate={{ opacity:1, scale:1 }} transition={{ duration:0.5, delay:0.1 }}>
-            <div className="w-40 h-48 md:w-48 md:h-56 rounded-lg overflow-hidden border-2 border-gray-200 shadow-sm flex-shrink-0">
-              {/* ADMIN: Replace /images/profile.png with your photo */}
-              <img src="/images/profile.png" alt="Ahmad Auliadi Y" className="w-full h-full object-cover" />
+            <div className="w-40 h-48 md:w-48 md:h-56 rounded-lg overflow-hidden border-2 border-gray-200 shadow-sm flex-shrink-0 relative">
+              <Image
+                src="/images/profile.png"
+                alt="Ahmad Auliadi Y"
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 768px) 160px, 192px"
+              />
             </div>
           </motion.div>
 

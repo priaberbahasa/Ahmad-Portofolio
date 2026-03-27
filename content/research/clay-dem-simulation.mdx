@@ -1,8 +1,8 @@
 ---
-title: "3D DEM Simulation of Clay Particle Micromechanics with DLVO Force Models"
+title: "3D DEM Simulation of Soil Saturation Effects on Clay Particle Packing"
 date: "2025-12-01"
-description: "A research-grade discrete element simulation framework capturing physicochemical interactions between clay platelets using van der Waals, EDL, and capillary bridge forces."
-tags: ["DEM", "Clay", "DLVO", "Micromechanics", "Julia"]
+description: "A Fortran F90-based Discrete Element Method framework simulating the effect of soil saturation on the packing behavior of clay particles, incorporating DLVO physicochemical force models."
+tags: ["DEM", "Clay", "DLVO", "Fortran", "Soil Saturation", "Micromechanics"]
 published: true
 journal: "In Progress"
 status: "in-progress"
@@ -11,22 +11,21 @@ coAuthors: []
 
 ## Overview
 
-This work develops a 3D Discrete Element Method framework for simulating clay particle interactions at the microscale. Unlike conventional DEM approaches that treat particles as spheres, this framework models clay platelets with aspect ratios representative of kaolinite minerals and incorporates full DLVO physicochemical force models.
+This research develops a 3D Discrete Element Method (DEM) framework written in Fortran F90 to simulate how varying degrees of soil saturation affect the packing structure and mechanical behavior of clay particles. The framework incorporates full DLVO physicochemical force models to capture the complex interactions between clay platelets.
 
 ## Key Contributions
 
-- Full DLVO force implementation: van der Waals attraction with Casimir-Polder retardation, electrical double layer repulsion, and capillary bridge forces for partial saturation
-- Hard wall enforcement and cell-list neighbor search for computational efficiency
-- Overdamped integration with quaternion-based rotation tracking
-- Stress tensor computation (Love-Weber formulation) and fabric tensor analysis (Oda 1972)
-- Interactive 3D visualization using Three.js
+- **Fortran F90 Implementation**: High-performance DEM solver optimized for particle-scale simulations
+- **Saturation-Dependent Forces**: Full DLVO force implementation including van der Waals attraction, electrical double layer repulsion, and capillary bridge forces for partial saturation
+- **Clay Platelet Geometry**: Models realistic platelet shapes with aspect ratios representative of kaolinite minerals
+- **Packing Analysis**: Studies how saturation state affects void ratio, fabric tensor, and particle arrangement
 
 ## Current Results
 
-The framework correctly reproduces the expected force ordering across saturation states: partial saturation generates the strongest net attractive forces, followed by dry conditions, with fully saturated conditions producing the weakest attraction.
+The framework correctly reproduces the expected force ordering across saturation states: partial saturation generates the strongest net attractive forces, followed by dry conditions, with fully saturated conditions producing the weakest attraction — directly influencing particle packing density and fabric orientation.
 
 ## Future Work
 
-- Validation against published oedometer curves and triaxial test data
-- Extension to N > 500 particles for realistic void ratios
-- Critical state line verification and fabric evolution comparison with SEM data
+- Validation against published oedometer and triaxial test data
+- Extension to larger particle assemblies for realistic void ratio predictions
+- Critical state line verification and fabric evolution analysis

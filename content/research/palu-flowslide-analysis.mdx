@@ -1,26 +1,29 @@
 ---
-title: "Numerical Analysis of Earthquake-Induced Flowslides: Lessons from the 2018 Palu Event"
+title: "SPH Solver with FEM-Based GUI for Large Deformation Simulation"
 date: "2025-09-15"
-description: "Investigating the mechanics of the catastrophic Palu earthquake flowslides using particle-based numerical methods to understand large-deformation failure in saturated soils."
-tags: ["Earthquake", "Flowslide", "SPH", "MPM", "Palu"]
+description: "Development of a Fortran-based SPH solver coupled with an intuitive FEM GUI for simulating large deformation problems, focusing on ease of use and rigorous computational engine."
+tags: ["SPH", "FEM", "GUI", "Fortran", "Large Deformation"]
 published: true
-journal: "Research Proposal"
+journal: "Software Development — In Progress"
 status: "in-progress"
 coAuthors: []
 thumbnail: "/images/sph-fem-model.png"
 ---
 
-## Background
+## Overview
 
-The September 2018 Mw 7.5 Palu earthquake in Sulawesi, Indonesia triggered extraordinary flowslides that traveled several kilometers over near-flat terrain, destroying entire neighborhoods.
+This project develops a graphical user interface (GUI) built on FEM principles that connects to a rigorous Fortran F90-based SPH (Smoothed Particle Hydrodynamics) solver engine. The primary goal is to make SPH simulation accessible through intuitive GUI design while maintaining computational rigor in the backend solver.
 
-## Research Objective
+## Key Features
 
-This work aims to numerically reproduce the observed runout behavior using particle-based methods (SPH and MPM), with particular attention to the role of pore water pressure generation and dissipation during the flow process.
+- **FEM-Based GUI**: Intuitive graphical interface for pre-processing, mesh generation, and problem setup
+- **Fortran F90 SPH Engine**: High-performance Smoothed Particle Hydrodynamics solver written in Fortran for computational efficiency
+- **Large Deformation Focus**: Designed specifically for problems involving extreme material deformation where traditional FEM fails
+- **Software Implementation**: Emphasis on usability and practical deployment for geotechnical engineering applications
 
-## Approach
+## Technical Approach
 
-- Characterize the pre-failure soil conditions using available geotechnical site investigation data
-- Implement strain-softening constitutive models appropriate for the Palu soils
-- Compare SPH and MPM predictions of runout distance, velocity, and deposit morphology
-- Validate against satellite imagery and field measurements
+- GUI handles geometry definition, boundary conditions, and material property input
+- SPH kernel manages particle-based discretization and time integration
+- Post-processing visualization of displacement, velocity, and stress fields
+- Validation against analytical solutions and benchmark problems

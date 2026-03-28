@@ -5,7 +5,7 @@
 export const siteConfig = {
   name: "Ahmad Auliadi Y",
   shortName: "Auliadi",
-  title: "Civil Engineering · Geotechnical Researcher · ASCE S.M",
+  title: "Civil Engineering · Geotechnical Researcher · ASCE S.M (G-I)",
   tagline: "Computational Geotechnical Earthquake Engineering",
   bio: "Civil Engineering undergraduate at Institut Teknologi Sumatera with published research in geotechnical engineering, specializing in numerical methods for slope stability and soil-structure interaction.",
 
@@ -25,7 +25,7 @@ export const siteConfig = {
 
   // --- Education ---
   education: [
-    { degree: "B.Eng. in Civil Engineering", institution: "Institut Teknologi Sumatera (ITERA)", location: "Lampung, Indonesia", year: "2022 – Present", gpa: "3.70" },
+    { degree: "B.Eng. in Civil Engineering", institution: "Institut Teknologi Sumatera (ITERA)", location: "Lampung, Indonesia", year: "2022 – 2026", gpa: "3.75" },
     { degree: "Senior High School", institution: "SMAN 7 Bandar Lampung", location: "Bandar Lampung", year: "2019 – 2022", gpa: "" },
   ],
 
@@ -50,21 +50,27 @@ export const siteConfig = {
     "Top Winner — Booktalks Libtera Competition 2023",
     "Interview Finalist — IISMA 2024",
     "Top Participant — LKMM TD-IV ITERA 2024",
-    "4th Runner-Up — ITERA English Debate Competition 2024",
+    "3rd Place — English Debate Bulan Bahasa ITERA 2024",
   ],
 
   languages: [
     { lang: "Indonesian", level: "Native" },
     { lang: "English", level: "Fluent (C1) — DET 140 · TOEFL ITP 600" },
+    { lang: "Chinese", level: "Elementary" },
+  ],
+
+  certifications: [
+    { name: "English Proficiency Certificate", issuer: "Duolingo English Test", date: "Jan 2024", expires: "Jan 2026" },
+    { name: "TOEFL ITP Prediction Test", issuer: "Global Operation Indonesia", date: "Jun 2023", score: "600" },
   ],
 
   skills: {
-    programming: ["Python", "MATLAB", "Julia", "JavaScript"],
+    programming: ["Python", "MATLAB", "Fortran", "Julia", "JavaScript"],
     geotechnical: ["PLAXIS", "GeoStudio"],
     structural: ["SAP2000", "ETABS"],
     drafting: ["AutoCAD", "SketchUp", "Revit", "Lumion"],
     methods: ["FEM", "DEM", "SPH", "MPM"],
-    tools: ["Git", "LaTeX", "Three.js", "ParaView"],
+    tools: ["Git", "LaTeX", "Three.js", "ParaView", "Adobe Photoshop", "Adobe Illustrator"],
   },
 
   affiliations: ["ASCE Student Member — Geo-Institute (G-I) (since 2022)"],

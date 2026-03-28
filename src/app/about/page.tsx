@@ -3,7 +3,7 @@ import Image from "next/image";
 import SectionHeading from "@/components/SectionHeading";
 import AnimatedSection from "@/components/AnimatedSection";
 import { siteConfig } from "@/lib/siteConfig";
-import { GraduationCap, MapPin, Award, Globe, BookOpen } from "lucide-react";
+import { GraduationCap, MapPin, Award, Globe, BookOpen, ShieldCheck } from "lucide-react";
 export const metadata: Metadata = { title: "About" };
 
 export default function AboutPage() {
@@ -37,9 +37,10 @@ export default function AboutPage() {
           </div>
         </div>
         <div className="prose-academic space-y-4 flex-1">
-          <p>I am a civil engineering undergraduate at <strong>Institut Teknologi Sumatera (ITERA)</strong> maintaining a <strong>3.70 GPA</strong> while actively engaged in research, organizational leadership, and professional work. My field interest is <strong>geotechnical engineering</strong>.</p>
+          <p>I am a civil engineering undergraduate at <strong>Institut Teknologi Sumatera (ITERA)</strong> maintaining a <strong>3.75 GPA</strong> while actively engaged in research, organizational leadership, and professional work. My field interest is <strong>geotechnical engineering</strong>.</p>
           <p>My undergraduate thesis investigates the <strong>effects of geometry and groundwater table position on lateral displacement of liquefied slopes</strong> using numerical methods. I have two published papers in SINTA 4-indexed journals covering bored pile foundations and jetty soil-structure interaction analysis.</p>
-          <p>Beyond academics, I have over six years of organizational experience and five years as a public speaker and writer. I am an <strong>ASCE Student Member (Geo-Institute)</strong> and fluent in English at C1 level (DET 140 / TOEFL ITP 600).</p>
+          <p>Beyond academics, I have over seven years of organizational experience and five years as a public speaker and writer. I am also a published author with three books and various articles. I have additional experience in graphic design and video editing, having worked with local companies and freelance projects.</p>
+          <p>I am an <strong>ASCE Student Member (Geo-Institute)</strong> and fluent in English at C1 level (DET 140 / TOEFL ITP 600).</p>
         </div>
       </div>
     </AnimatedSection>
@@ -84,6 +85,15 @@ export default function AboutPage() {
       <AnimatedSection key={i} delay={i*0.08}><div className="card p-4 flex items-center gap-3">
         <Globe size={14} className="text-navy"/><span className="text-sm font-medium text-ink">{l.lang}</span><span className="text-sm text-ink-muted">{l.level}</span>
       </div></AnimatedSection>))}</div>
+
+    <div className="divider mb-14"/>
+    <SectionHeading label="Certifications" title="Licenses & Certifications"/>
+    <div className="space-y-3 mb-14">{siteConfig.certifications.map((c, i) => (
+      <AnimatedSection key={i} delay={i*0.08}><div className="card p-4 flex items-center gap-3">
+        <ShieldCheck size={14} className="text-navy flex-shrink-0"/>
+        <div><span className="text-sm font-medium text-ink">{c.name}</span><span className="text-sm text-ink-muted ml-2">— {c.issuer}</span>
+          <div className="text-xs text-ink-muted mt-0.5">{c.date}{c.expires && ` · Expires ${c.expires}`}{c.score && ` · Score: ${c.score}`}</div>
+        </div></div></AnimatedSection>))}</div>
 
     <div className="divider mb-14"/>
     <SectionHeading label="Recognition" title="Achievements"/>

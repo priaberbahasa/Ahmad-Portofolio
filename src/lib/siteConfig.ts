@@ -4,7 +4,7 @@
 
 export const siteConfig = {
   name: "Ahmad Auliadi Y",
-  shortName: "Auliadi",
+  shortName: "Ahmad. Y",
   title: "Civil Engineering · Geotechnical Researcher · ASCE S.M (G-I)",
   tagline: "Computational Geotechnical Earthquake Engineering",
   bio: "Civil Engineering undergraduate at Institut Teknologi Sumatera with published research in geotechnical engineering, specializing in numerical methods for slope stability and soil-structure interaction.",
@@ -21,6 +21,7 @@ export const siteConfig = {
     instagram: "https://instagram.com/ahmadauliadiyufr",
     linktree: "https://mez.ink/ahmadauliadiy",
     github: "https://github.com/priaberbahasa",
+    orcid: "https://orcid.org/0009-0007-2401-3761",
   },
 
   // --- Education ---
@@ -31,18 +32,36 @@ export const siteConfig = {
 
   thesis: "Numerical Study on the Effects of Geometry and Groundwater Table Position on Lateral Displacement of Liquefied Slopes",
 
-  // --- Research Interests ---
+  // --- Research Interests / Focus Areas ---
+  focusAreas: [
+    "Foundation Engineering",
+    "Slope Stability Analysis",
+    "Geotechnical Forensics",
+    "Soil Laboratories",
+  ],
+
   researchInterests: [
-    { area: "Computational Geotechnical Earthquake Engineering", keywords: ["Large-deformation modeling", "Seismic slope stability", "Flowslide mechanics", "Liquefaction"] },
-    { area: "Particle-Based & Meshfree Methods", keywords: ["DEM", "SPH", "MPM", "FEM", "Coupled methods"] },
-    { area: "Clay Micromechanics", keywords: ["DLVO forces", "Fabric evolution", "Capillary bridges"] },
-    { area: "Offshore & Seabed Geotechnics", keywords: ["Suction caisson", "Seabed stability", "Marine foundations"] },
+    { area: "Foundation Engineering", keywords: ["Pile foundations", "Axial capacity", "Soil–structure interaction"] },
+    { area: "Slope Stability Analysis", keywords: ["Limit equilibrium", "Numerical slope modeling", "Seismic slopes"] },
+    { area: "Geotechnical Forensics", keywords: ["Failure investigation", "Back-analysis", "Remediation"] },
+    { area: "Soil Laboratories", keywords: ["Index properties", "Triaxial", "Consolidation"] },
+    { area: "Particle-Based & Meshfree Methods (beginner)", keywords: ["DEM", "SPH", "MPM", "FEM"] },
   ],
 
   // --- Publications ---
   publications: [
     { title: "Kajian Daya Dukung Aksial Fondasi Tiang Bor pada Tanah Tufa Berdasarkan Uji PDA di Gedung Laboratorium Teknik 3 ITERA", journal: "Media Konstruksi (SINTA 4)", doi: "https://doi.org/10.33772/jmk.v10i1.112" },
     { title: "Analysis of Jetty Structure Using the Fixity Point Method and Soil–Structure Interaction via the Spring Model", journal: "G-Tech: Jurnal Teknologi Terapan (SINTA 4)", doi: "https://doi.org/10.70609/g-tech.v9i3.6863" },
+  ],
+
+  // --- Experience ---
+  experience: [
+    { role: "Assistant Engineer", org: "PT Tribina Wahana Cipta, Lampung", date: "2024 – Present" },
+    { role: "Assistant Researcher — Civil Engineering", org: "Institut Teknologi Sumatera (ITERA)", date: "2024 – Present" },
+    { role: "Foundation Engineering Assistant", org: "ITERA — Civil Eng. Dept.", date: "2025" },
+    { role: "Soil Mechanics Lab Assistant", org: "ITERA Geotechnical Lab", date: "2024 – 2025" },
+    { role: "Project Assistant (MWT Engineering)", org: "PT MWT — Pindo Deli", date: "2024" },
+    { role: "HMS-ITERA Senate Staff", org: "Civil Eng. Student Association", date: "2023 – 2024" },
   ],
 
   achievements: [
@@ -65,11 +84,12 @@ export const siteConfig = {
   ],
 
   skills: {
+    focusAreas: ["Foundation Engineering", "Slope Stability Analysis", "Geotechnical Forensics", "Soil Laboratories"],
     programming: ["Python", "MATLAB", "Fortran", "Julia", "JavaScript"],
-    geotechnical: ["PLAXIS", "GeoStudio"],
+    geotechnical: ["PLAXIS", "GeoStudio", "Slide (Rocscience)", "LPile", "GROUP"],
     structural: ["SAP2000", "ETABS"],
     drafting: ["AutoCAD", "SketchUp", "Revit", "Lumion"],
-    methods: ["FEM", "DEM", "SPH", "MPM"],
+    methods: ["FEM", "DEM (beginner)", "SPH (beginner)", "MPM (beginner)", "Coupled methods"],
     tools: ["Git", "LaTeX", "Three.js", "ParaView", "Adobe Photoshop", "Adobe Illustrator"],
   },
 

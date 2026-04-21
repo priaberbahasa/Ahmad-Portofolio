@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import DragList from "@/components/admin/DragList";
 import ImagePicker from "@/components/admin/ImagePicker";
+import { adminFetch } from "@/lib/adminFetch";
 
 // ───────── Small styled inputs ─────────────────────────────────
 const inp: React.CSSProperties = {
@@ -63,9 +64,7 @@ export default function ConfigEditorPage() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch("/api/admin/config");
-        const d = await res.json();
-        if (!res.ok) throw new Error(d.error || "Failed to load");
+        const d = await adminFetch<{ data: any; sha: string }>("/api/admin/config");
         setData(d.data);
         setSha(d.sha);
       } catch (e) { setError((e as Error).message); }
@@ -95,13 +94,11 @@ export default function ConfigEditorPage() {
   async function save() {
     setSaving(true); setError(""); setSuccess("");
     try {
-      const res = await fetch("/api/admin/config", {
+      const d = await adminFetch<{ ok: true; newSha: string; commitSha: string }>("/api/admin/config", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data, sha, message: "admin: update site config" }),
       });
-      const d = await res.json();
-      if (!res.ok) throw new Error(d.error || "Save failed");
       setSha(d.newSha);
       setSuccess(`Saved. Commit: ${(d.commitSha || "").slice(0, 7)}`);
       setTimeout(() => setSuccess(""), 4000);

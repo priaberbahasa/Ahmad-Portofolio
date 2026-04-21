@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { adminFetch } from "@/lib/adminFetch";
 
 type MediaItem = { name: string; path: string; url: string; sha: string; size: number };
 
@@ -15,9 +16,7 @@ export default function MediaLibraryPage() {
   async function load() {
     setLoading(true); setError("");
     try {
-      const res = await fetch("/api/admin/media");
-      const d = await res.json();
-      if (!res.ok) throw new Error(d.error || "Failed to load");
+      const d = await adminFetch<{ images: MediaItem[] }>("/api/admin/media");
       setImages(d.images);
     } catch (e) { setError((e as Error).message); }
     finally { setLoading(false); }
@@ -37,13 +36,11 @@ export default function MediaLibraryPage() {
           reader.onerror = reject;
           reader.readAsDataURL(f);
         });
-        const res = await fetch("/api/admin/media", {
+        const d = await adminFetch<{ ok: true; name: string }>("/api/admin/media", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name: f.name, base64 }),
         });
-        const d = await res.json();
-        if (!res.ok) throw new Error(d.error || `Upload failed: ${f.name}`);
         done++;
         setToast(`Uploaded ${done}/${total}: ${d.name}`);
       }
@@ -60,9 +57,7 @@ export default function MediaLibraryPage() {
   async function removeImage(path: string) {
     if (!confirm(`Delete ${path}? This commits to git.`)) return;
     try {
-      const res = await fetch(`/api/admin/media?path=${encodeURIComponent(path)}`, { method: "DELETE" });
-      const d = await res.json();
-      if (!res.ok) throw new Error(d.error || "Delete failed");
+      await adminFetch(`/api/admin/media?path=${encodeURIComponent(path)}`, { method: "DELETE" });
       await load();
       setToast(`Deleted ${path.split("/").pop()}`);
       setTimeout(() => setToast(""), 2500);

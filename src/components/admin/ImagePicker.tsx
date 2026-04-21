@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { adminFetch } from "@/lib/adminFetch";
 
 type MediaItem = { name: string; path: string; url: string; sha: string; size: number };
 
@@ -22,9 +23,7 @@ export default function ImagePicker({
     (async () => {
       setLoading(true); setError("");
       try {
-        const res = await fetch("/api/admin/media");
-        const d = await res.json();
-        if (!res.ok) throw new Error(d.error || "Failed to load");
+        const d = await adminFetch<{ images: MediaItem[] }>("/api/admin/media");
         setImages(d.images);
       } catch (e) { setError((e as Error).message); }
       finally { setLoading(false); }
@@ -41,13 +40,11 @@ export default function ImagePicker({
           reader.onerror = reject;
           reader.readAsDataURL(f);
         });
-        const res = await fetch("/api/admin/media", {
+        const d = await adminFetch<{ name: string; path: string; url: string; newSha: string }>("/api/admin/media", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name: f.name, base64 }),
         });
-        const d = await res.json();
-        if (!res.ok) throw new Error(d.error || `Upload failed: ${f.name}`);
         setImages(prev => {
           const existing = prev.find(i => i.path === d.path);
           if (existing) return prev.map(i => i.path === d.path ? { ...i, sha: d.newSha } : i);

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { parseFrontmatter, stringifyFrontmatter, type Frontmatter } from "@/lib/frontmatter";
 import MDXFormEditor from "@/components/admin/MDXFormEditor";
+import { adminFetch } from "@/lib/adminFetch";
 
 function mdxTemplate(slug: string) {
   return `---
@@ -64,9 +65,7 @@ function EditInner() {
     }
     (async () => {
       try {
-        const res = await fetch(`/api/admin/file?path=${encodeURIComponent(path)}`);
-        const d = await res.json();
-        if (!res.ok) throw new Error(d.error || "Failed to load");
+        const d = await adminFetch<{ content: string; sha: string }>(`/api/admin/file?path=${encodeURIComponent(path)}`);
         loadInitial(d.content);
         setSha(d.sha);
       } catch (e) {
@@ -81,7 +80,7 @@ function EditInner() {
     setSaving(true); setError(""); setSuccess("");
     try {
       const toSave = isMDX ? stringifyFrontmatter(fmData, fmBody) : rawContent;
-      const res = await fetch("/api/admin/file", {
+      const d = await adminFetch<{ ok: true; newSha: string; commitSha: string }>("/api/admin/file", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -91,8 +90,6 @@ function EditInner() {
           message: `admin: ${isNew ? "create" : "update"} ${customPath}`,
         }),
       });
-      const d = await res.json();
-      if (!res.ok) throw new Error(d.error || "Save failed");
       setSha(d.newSha);
       setSuccess(`Saved. Commit: ${(d.commitSha || "").slice(0, 7)}`);
       if (isNew) setTimeout(() => router.replace(`/admin/edit?path=${encodeURIComponent(customPath)}`), 800);

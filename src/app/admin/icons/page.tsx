@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 import Link from "next/link";
+import { adminFetch } from "@/lib/adminFetch";
 
 export default function IconManagerPage() {
   const [preview, setPreview] = useState<string>("");
@@ -34,14 +35,12 @@ export default function IconManagerPage() {
     setUploading(true); setError("");
     try {
       const base64 = preview.split(",")[1];
-      const res = await fetch("/api/admin/icon", {
+      const d = await adminFetch<{ ok: true; results: Array<{ path: string }> }>("/api/admin/icon", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ base64 }),
       });
-      const d = await res.json();
-      if (!res.ok) throw new Error(d.error || "Upload failed");
-      setDone({ paths: d.results.map((r: any) => r.path) });
+      setDone({ paths: d.results.map((r) => r.path) });
     } catch (e) { setError((e as Error).message); }
     finally { setUploading(false); }
   }

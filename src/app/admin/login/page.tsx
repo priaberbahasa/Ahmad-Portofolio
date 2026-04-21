@@ -1,6 +1,7 @@
 "use client";
 import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { adminFetch } from "@/lib/adminFetch";
 
 function LoginInner() {
   const router = useRouter();
@@ -15,16 +16,11 @@ function LoginInner() {
     setError("");
     setLoading(true);
     try {
-      const res = await fetch("/api/admin/login", {
+      await adminFetch("/api/admin/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password }),
       });
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        setError(data.error || "Login failed");
-        return;
-      }
       router.replace(next);
       router.refresh();
     } catch (err) {

@@ -41,6 +41,18 @@ export default function AdminHome() {
     router.replace("/admin/login");
   }
 
+  async function clearServiceWorker() {
+    if (!("serviceWorker" in navigator)) { alert("No service worker available."); return; }
+    const regs = await navigator.serviceWorker.getRegistrations();
+    for (const r of regs) await r.unregister();
+    if ("caches" in window) {
+      const names = await caches.keys();
+      await Promise.all(names.map(n => caches.delete(n)));
+    }
+    alert(`Cleared ${regs.length} service worker${regs.length !== 1 ? "s" : ""} and all caches. Reloading…`);
+    window.location.reload();
+  }
+
   return (
     <div className="container" style={{ maxWidth: 1000, paddingTop: 40, paddingBottom: 80 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 28 }}>
@@ -48,7 +60,10 @@ export default function AdminHome() {
           <div className="eyebrow">Admin</div>
           <h1 className="section-title" style={{ margin: 0 }}>Control panel</h1>
         </div>
-        <button className="btn btn-ghost" onClick={logout}>Sign out</button>
+        <div style={{ display: "flex", gap: 8 }}>
+          <button className="btn btn-ghost btn-sm" onClick={clearServiceWorker} title="If saves hang or return empty responses, clear the PWA service worker.">Clear SW</button>
+          <button className="btn btn-ghost" onClick={logout}>Sign out</button>
+        </div>
       </div>
 
       <p className="section-sub" style={{ marginBottom: 32 }}>

@@ -168,13 +168,13 @@ export const siteConfig = {
 
   affiliations: ["ASCE Student Member — Geo-Institute (G-I) (since 2022)"],
 
-  // Single-scroll navigation with anchors
+  // Single-scroll navigation with anchors (prefixed with "/" so they work from any route)
   navLinks: [
-    { label: "Home", href: "#home" },
-    { label: "Research", href: "#research" },
-    { label: "Projects", href: "#projects" },
-    { label: "Experience", href: "#activities" },
-    { label: "About", href: "#about" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "/#home" },
+    { label: "Research", href: "/#research" },
+    { label: "Projects", href: "/#projects" },
+    { label: "Experience", href: "/#activities" },
+    { label: "About", href: "/#about" },
+    { label: "Contact", href: "/#contact" },
   ],
 };

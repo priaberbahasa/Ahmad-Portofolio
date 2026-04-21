@@ -8,7 +8,7 @@ export default function Navbar() {
   return (
     <nav className="nav">
       <div className="nav-inner">
-        <a href="#home" className="brand-mark">{siteConfig.shortName}</a>
+        <a href="/#home" className="brand-mark">{siteConfig.shortName}</a>
         <ul className="nav-links">
           {siteConfig.navLinks.map(l => (
             <li key={l.href}><a href={l.href}>{l.label}</a></li>

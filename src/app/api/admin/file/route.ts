@@ -7,6 +7,7 @@ export const runtime = "nodejs";
 const ALLOWED_PATHS = [
   /^content\/(research|projects|experience|activities)\/[\w-]+\.mdx$/,
   /^src\/lib\/siteConfig\.ts$/,
+  /^src\/data\/siteConfig\.json$/,
 ];
 
 function isAllowed(p: string): boolean {

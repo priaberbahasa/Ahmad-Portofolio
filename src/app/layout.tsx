@@ -3,13 +3,22 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next";
+import { siteConfig } from "@/lib/siteConfig";
 
 export const metadata: Metadata = {
-  title: { default: "Ahmad Auliadi Y — Research Portfolio", template: "%s | Ahmad Auliadi Y" },
-  description: "Portfolio of Ahmad Auliadi Y — civil engineering & geotechnical research at ITERA.",
+  title: { default: siteConfig.siteMeta?.titleTemplate || "Ahmad Auliadi Y — Research Portfolio", template: "%s | Ahmad Auliadi Y" },
+  description: siteConfig.siteMeta?.description || "Portfolio of Ahmad Auliadi Y — civil engineering & geotechnical research at ITERA.",
   manifest: "/manifest.json",
+  icons: {
+    icon: [
+      { url: "/favicon.png", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
 };
-export const viewport: Viewport = { themeColor: "#F5F1E8", width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { themeColor: siteConfig.siteMeta?.themeColor || "#F5F1E8", width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

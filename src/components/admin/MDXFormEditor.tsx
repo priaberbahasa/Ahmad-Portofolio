@@ -2,6 +2,7 @@
 import { useState } from "react";
 import type { Frontmatter } from "@/lib/frontmatter";
 import ImagePicker from "./ImagePicker";
+import MarkdownPreview from "./MarkdownPreview";
 
 // All known frontmatter keys across our content types.
 // Each gets a structured input; unknown keys fall back to a text input so
@@ -46,7 +47,7 @@ export default function MDXFormEditor({
   const [data, setData] = useState<Frontmatter>(initialData);
   const [content, setContent] = useState(initialContent);
   const [pickerFor, setPickerFor] = useState<string | null>(null);
-  const [showRaw, setShowRaw] = useState(false);
+  const [showPreview, setShowPreview] = useState(true);
 
   function update(patch: Frontmatter, newContent?: string) {
     const next = { ...data, ...patch };
@@ -168,23 +169,26 @@ export default function MDXFormEditor({
           <button type="button" className="btn btn-ghost btn-sm" onClick={() => setPickerFor("__body__")}>
             Insert image
           </button>
-          <button type="button" className="btn btn-ghost btn-sm" onClick={() => setShowRaw(!showRaw)}>
-            {showRaw ? "Form view" : "Raw view"}
+          <button type="button" className="btn btn-ghost btn-sm" onClick={() => setShowPreview(!showPreview)}>
+            {showPreview ? "Hide preview" : "Show preview"}
           </button>
         </div>
       </div>
 
-      <textarea
-        value={content}
-        onChange={(e) => update({}, e.target.value)}
-        spellCheck={false}
-        style={{
-          width: "100%", minHeight: 360, padding: 16,
-          border: "1px solid var(--line)", borderRadius: "var(--r-lg)",
-          background: "var(--surface)", color: "var(--ink)",
-          fontFamily: "var(--mono)", fontSize: 13, lineHeight: 1.6, resize: "vertical",
-        }}
-      />
+      <div style={{ display: "grid", gridTemplateColumns: showPreview ? "1fr 1fr" : "1fr", gap: 16 }}>
+        <textarea
+          value={content}
+          onChange={(e) => update({}, e.target.value)}
+          spellCheck={false}
+          style={{
+            width: "100%", minHeight: 360, padding: 16,
+            border: "1px solid var(--line)", borderRadius: "var(--r-lg)",
+            background: "var(--surface)", color: "var(--ink)",
+            fontFamily: "var(--mono)", fontSize: 13, lineHeight: 1.6, resize: "vertical",
+          }}
+        />
+        {showPreview && <MarkdownPreview source={content} />}
+      </div>
 
       <ImagePicker
         open={!!pickerFor}

@@ -42,30 +42,35 @@ export default function AdminHome() {
   }
 
   return (
-    <div className="container" style={{ maxWidth: 900, paddingTop: 40, paddingBottom: 80 }}>
+    <div className="container" style={{ maxWidth: 1000, paddingTop: 40, paddingBottom: 80 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 28 }}>
         <div>
           <div className="eyebrow">Admin</div>
-          <h1 className="section-title" style={{ margin: 0 }}>Content editor</h1>
+          <h1 className="section-title" style={{ margin: 0 }}>Control panel</h1>
         </div>
         <button className="btn btn-ghost" onClick={logout}>Sign out</button>
       </div>
 
       <p className="section-sub" style={{ marginBottom: 32 }}>
-        Edit a file below — save will commit directly to GitHub on the <code>main</code> branch.
-        Vercel will redeploy automatically within ~30 seconds.
+        Every save commits directly to GitHub on the <code>main</code> branch.
+        Vercel redeploys automatically within ~30 seconds.
       </p>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 20 }}>
-        <Link href="/admin/media" className="panel" style={{ textDecoration: "none", cursor: "pointer" }}>
-          <div className="panel-kicker">Media library</div>
-          <h3 style={{ fontFamily: "var(--font-serif)", fontSize: 20, margin: "4px 0 6px", color: "var(--ink)" }}>Upload & manage images →</h3>
-          <p style={{ fontSize: 13, color: "var(--ink-2)", margin: 0 }}>Drag-drop images. Each upload auto-commits to git.</p>
-        </Link>
-        <Link href={`/admin/edit?path=${encodeURIComponent("src/lib/siteConfig.ts")}`} className="panel" style={{ textDecoration: "none", cursor: "pointer" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 14, marginBottom: 22 }}>
+        <Link href="/admin/config" className="panel" style={{ textDecoration: "none", cursor: "pointer", gridColumn: "span 1" }}>
           <div className="panel-kicker">Site config</div>
-          <h3 style={{ fontFamily: "var(--font-serif)", fontSize: 20, margin: "4px 0 6px", color: "var(--ink)" }}>Bio, contacts, skills →</h3>
-          <p style={{ fontSize: 13, color: "var(--ink-2)", margin: 0 }}>Raw TypeScript editor for <code>siteConfig.ts</code>.</p>
+          <h3 style={{ fontFamily: "var(--font-serif)", fontSize: 19, margin: "4px 0 6px", color: "var(--ink)" }}>Edit everything →</h3>
+          <p style={{ fontSize: 12.5, color: "var(--ink-2)", margin: 0 }}>Bio, links, education, experience, skills. Drag to reorder.</p>
+        </Link>
+        <Link href="/admin/media" className="panel" style={{ textDecoration: "none", cursor: "pointer", gridColumn: "span 1" }}>
+          <div className="panel-kicker">Media library</div>
+          <h3 style={{ fontFamily: "var(--font-serif)", fontSize: 19, margin: "4px 0 6px", color: "var(--ink)" }}>Upload images →</h3>
+          <p style={{ fontSize: 12.5, color: "var(--ink-2)", margin: 0 }}>Drag-drop. Auto-committed to git.</p>
+        </Link>
+        <Link href="/admin/icons" className="panel" style={{ textDecoration: "none", cursor: "pointer", gridColumn: "span 1" }}>
+          <div className="panel-kicker">Site icon</div>
+          <h3 style={{ fontFamily: "var(--font-serif)", fontSize: 19, margin: "4px 0 6px", color: "var(--ink)" }}>Favicon & PWA →</h3>
+          <p style={{ fontSize: 12.5, color: "var(--ink-2)", margin: 0 }}>Upload & auto-resize to all icon sizes.</p>
         </Link>
       </div>
 
@@ -73,7 +78,7 @@ export default function AdminHome() {
       {loading && <p style={{ color: "var(--muted)" }}>Loading content…</p>}
 
       {!loading && !error && SECTIONS.map(s => (
-        <div key={s.path} className="panel panel--wide" style={{ marginBottom: 20 }}>
+        <div key={s.path} className="panel panel--wide" style={{ marginBottom: 14 }}>
           <div className="panel-kicker">{s.label} · {data[s.path]?.length || 0}</div>
           <ul className="simple-list">
             {(data[s.path] || []).map(item => (

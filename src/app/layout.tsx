@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next";
 import { siteConfig } from "@/lib/siteConfig";
+import SWCleanup from "@/components/SWCleanup";
 
 export const metadata: Metadata = {
   title: { default: siteConfig.siteMeta?.titleTemplate || "Ahmad Auliadi Y — Research Portfolio", template: "%s | Ahmad Auliadi Y" },
@@ -32,6 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
+        <SWCleanup />
         <Navbar />
         <main>{children}</main>
         <Footer />

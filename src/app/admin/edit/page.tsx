@@ -2,8 +2,10 @@
 import { useEffect, useState, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import { parseFrontmatter, stringifyFrontmatter, type Frontmatter } from "@/lib/frontmatter";
+import MDXFormEditor from "@/components/admin/MDXFormEditor";
 
-function MDX_TEMPLATE(slug: string) {
+function mdxTemplate(slug: string) {
   return `---
 title: "New entry — ${slug}"
 date: "${new Date().toISOString().slice(0,10)}"
@@ -29,8 +31,9 @@ function EditInner() {
   const search = useSearchParams();
   const path = search.get("path") || "";
   const isNew = search.get("new") === "1";
+  const isMDX = path.endsWith(".mdx");
 
-  const [content, setContent] = useState("");
+  const [rawContent, setRawContent] = useState("");
   const [sha, setSha] = useState<string | undefined>();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -38,11 +41,23 @@ function EditInner() {
   const [success, setSuccess] = useState("");
   const [customPath, setCustomPath] = useState(path);
 
+  // For MDX files, we also keep the parsed form state.
+  const [fmData, setFmData] = useState<Frontmatter>({});
+  const [fmBody, setFmBody] = useState("");
+
   useEffect(() => {
     if (!path) { setLoading(false); return; }
+    const loadInitial = (source: string) => {
+      setRawContent(source);
+      if (isMDX) {
+        const { data, content } = parseFrontmatter(source);
+        setFmData(data);
+        setFmBody(content);
+      }
+    };
     if (isNew) {
       const slug = path.split("/").pop()?.replace(".mdx", "") || "new-entry";
-      setContent(MDX_TEMPLATE(slug));
+      loadInitial(mdxTemplate(slug));
       setSha(undefined);
       setLoading(false);
       return;
@@ -52,7 +67,7 @@ function EditInner() {
         const res = await fetch(`/api/admin/file?path=${encodeURIComponent(path)}`);
         const d = await res.json();
         if (!res.ok) throw new Error(d.error || "Failed to load");
-        setContent(d.content);
+        loadInitial(d.content);
         setSha(d.sha);
       } catch (e) {
         setError((e as Error).message);
@@ -60,17 +75,18 @@ function EditInner() {
         setLoading(false);
       }
     })();
-  }, [path, isNew]);
+  }, [path, isNew, isMDX]);
 
   async function save() {
     setSaving(true); setError(""); setSuccess("");
     try {
+      const toSave = isMDX ? stringifyFrontmatter(fmData, fmBody) : rawContent;
       const res = await fetch("/api/admin/file", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           path: customPath,
-          content,
+          content: toSave,
           sha: isNew ? undefined : sha,
           message: `admin: ${isNew ? "create" : "update"} ${customPath}`,
         }),
@@ -90,14 +106,16 @@ function EditInner() {
   if (!path) return <div className="container"><p>Missing <code>?path=</code> parameter.</p></div>;
 
   return (
-    <div className="container" style={{ maxWidth: 900, paddingTop: 40, paddingBottom: 80 }}>
+    <div className="container" style={{ maxWidth: 1000, paddingTop: 40, paddingBottom: 80 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
-        <Link href="/admin" className="btn btn-ghost btn-sm">← Back to admin</Link>
-        <span className="eyebrow" style={{ margin: 0 }}>{isNew ? "Creating" : "Editing"}</span>
+        <Link href="/admin" className="btn btn-ghost btn-sm">← Dashboard</Link>
+        <span className="eyebrow" style={{ margin: 0 }}>
+          {isNew ? "Creating" : "Editing"} · {isMDX ? "MDX form" : "Raw text"}
+        </span>
       </div>
 
       {isNew && (
-        <label style={{ display: "block", marginBottom: 12 }}>
+        <label style={{ display: "block", marginBottom: 16 }}>
           <span className="ml-label">File path</span>
           <input
             type="text"
@@ -111,27 +129,36 @@ function EditInner() {
       {!isNew && <h1 className="section-title" style={{ fontSize: 20, marginTop: 4, marginBottom: 20 }}>{path}</h1>}
 
       {loading ? <p style={{ color: "var(--muted)" }}>Loading…</p> : (
-        <>
+        isMDX ? (
+          <MDXFormEditor
+            initialData={fmData}
+            initialContent={fmBody}
+            onChange={(data, body) => { setFmData(data); setFmBody(body); }}
+          />
+        ) : (
           <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
+            value={rawContent}
+            onChange={(e) => setRawContent(e.target.value)}
             spellCheck={false}
             style={{
-              width: "100%", minHeight: 500,
+              width: "100%", minHeight: 520,
               padding: 16, border: "1px solid var(--line)", borderRadius: "var(--r-lg)",
               background: "var(--surface)", color: "var(--ink)",
               fontFamily: "var(--mono)", fontSize: 13, lineHeight: 1.55, resize: "vertical",
             }}
           />
-          <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 16 }}>
-            <button className="btn btn-primary" onClick={save} disabled={saving}>
-              {saving ? "Saving…" : "Save & Commit"}
-            </button>
-            <Link href="/admin" className="btn btn-ghost">Cancel</Link>
-            {success && <span style={{ fontFamily: "var(--mono)", fontSize: 12, color: "var(--accent)" }}>{success}</span>}
-            {error && <span style={{ fontFamily: "var(--mono)", fontSize: 12, color: "#b54141" }}>{error}</span>}
-          </div>
-        </>
+        )
+      )}
+
+      {!loading && (
+        <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 20 }}>
+          <button className="btn btn-primary" onClick={save} disabled={saving}>
+            {saving ? "Saving…" : "Save & Commit"}
+          </button>
+          <Link href="/admin" className="btn btn-ghost">Cancel</Link>
+          {success && <span style={{ fontFamily: "var(--mono)", fontSize: 12, color: "var(--accent)" }}>{success}</span>}
+          {error && <span style={{ fontFamily: "var(--mono)", fontSize: 12, color: "#b54141" }}>{error}</span>}
+        </div>
       )}
     </div>
   );

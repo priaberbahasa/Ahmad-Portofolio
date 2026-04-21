@@ -56,15 +56,17 @@ export default function AdminHome() {
         Vercel will redeploy automatically within ~30 seconds.
       </p>
 
-      <div className="panel panel--wide" style={{ marginBottom: 20 }}>
-        <div className="panel-kicker">Site config</div>
-        <ul className="simple-list">
-          <li>
-            <Link href={`/admin/edit?path=${encodeURIComponent("src/lib/siteConfig.ts")}`} className="pub-doi">
-              src/lib/siteConfig.ts
-            </Link>
-          </li>
-        </ul>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 20 }}>
+        <Link href="/admin/media" className="panel" style={{ textDecoration: "none", cursor: "pointer" }}>
+          <div className="panel-kicker">Media library</div>
+          <h3 style={{ fontFamily: "var(--font-serif)", fontSize: 20, margin: "4px 0 6px", color: "var(--ink)" }}>Upload & manage images →</h3>
+          <p style={{ fontSize: 13, color: "var(--ink-2)", margin: 0 }}>Drag-drop images. Each upload auto-commits to git.</p>
+        </Link>
+        <Link href={`/admin/edit?path=${encodeURIComponent("src/lib/siteConfig.ts")}`} className="panel" style={{ textDecoration: "none", cursor: "pointer" }}>
+          <div className="panel-kicker">Site config</div>
+          <h3 style={{ fontFamily: "var(--font-serif)", fontSize: 20, margin: "4px 0 6px", color: "var(--ink)" }}>Bio, contacts, skills →</h3>
+          <p style={{ fontSize: 13, color: "var(--ink-2)", margin: 0 }}>Raw TypeScript editor for <code>siteConfig.ts</code>.</p>
+        </Link>
       </div>
 
       {error && <p style={{ color: "#b54141", fontFamily: "var(--mono)", fontSize: 13 }}>Error: {error}</p>}

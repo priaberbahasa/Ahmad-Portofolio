@@ -3,15 +3,21 @@
 // ============================================================
 
 export const siteConfig = {
-  name: "Ahmad Auliadi Y",
+  name: "Ahmad Auliadi Y.",
   shortName: "Ahmad. Y",
-  title: "Civil Engineering · Geotechnical Researcher · ASCE S.M (G-I)",
+  title: "Civil Engineering · Geotechnical Researcher",
+  subtitle: "ASCE Student Member (Geo-Institute)",
   tagline: "Computational Geotechnical Earthquake Engineering",
+  location: "Lampung, Indonesia",
+
   bio: "Civil Engineering undergraduate at Institut Teknologi Sumatera with published research in geotechnical engineering, specializing in numerical methods for slope stability and soil-structure interaction.",
 
-  // --- Contact (edit freely) ---
+  heroBio_en: "I'm a final-year Civil Engineering undergraduate at Institut Teknologi Sumatera, working at the intersection of numerical methods and geotechnical engineering. My thesis looks at how slope geometry and groundwater conditions shape lateral spreading in liquefied ground. I'm currently preparing for a Master's in Computational Geomechanics.",
+  heroBio_id: "Saya mahasiswa tingkat akhir Teknik Sipil di Institut Teknologi Sumatera, bekerja pada irisan metode numerik dan rekayasa geoteknik. Tugas akhir saya meneliti bagaimana geometri lereng dan muka air tanah memengaruhi perpindahan lateral pada tanah terlikuifaksi. Saat ini saya sedang mempersiapkan studi Magister di bidang Computational Geomechanics.",
+
+  // --- Contact ---
   email: "ahmad.122210045@student.itera.ac.id",
-  whatsapp: "+62895631931645", // no spaces/dashes for the wa.me link
+  whatsapp: "+62895631931645",
   whatsappDisplay: "(+62) 895-6319-31645",
 
   // --- Social & Academic Links ---
@@ -26,13 +32,17 @@ export const siteConfig = {
 
   // --- Education ---
   education: [
-    { degree: "B.Eng. in Civil Engineering", institution: "Institut Teknologi Sumatera (ITERA)", location: "Lampung, Indonesia", year: "2022 – 2026", gpa: "3.75" },
-    { degree: "Senior High School", institution: "SMAN 7 Bandar Lampung", location: "Bandar Lampung", year: "2019 – 2022", gpa: "" },
+    { degree: "B.Eng. in Civil Engineering", institution: "Institut Teknologi Sumatera (ITERA)", location: "Lampung, Indonesia", year: "2022 – 2026", gpa: "3.75 / 4.00" },
+    { degree: "Senior High School — Science", institution: "SMAN 7 Bandar Lampung", location: "Bandar Lampung", year: "2019 – 2022", gpa: "" },
   ],
 
-  thesis: "Numerical Study on the Effects of Geometry and Groundwater Table Position on Lateral Displacement of Liquefied Slopes",
+  thesis: {
+    title: "Numerical Study on the Effects of Geometry and Groundwater Table Position on Lateral Displacement of Liquefied Slopes",
+    supervisor: "Dr. Eng. Rahmat Kurniawan, S.T., M.T.",
+    status: "In progress — ITERA 2026",
+  },
 
-  // --- Research Interests / Focus Areas ---
+  // --- Focus Areas ---
   focusAreas: [
     "Foundation Engineering",
     "Slope Stability Analysis",
@@ -48,28 +58,77 @@ export const siteConfig = {
     { area: "Particle-Based & Meshfree Methods (beginner)", keywords: ["DEM", "SPH", "MPM", "FEM"] },
   ],
 
-  // --- Publications ---
+  // --- Research organized by topic for the carousel ---
+  researchTopics: [
+    {
+      topic: "Liquefaction & Slope Stability",
+      blurb: "Earthquake-induced flow failure and lateral spreading.",
+      items: [
+        { slug: "thesis-liquefied-slopes", title: "Effects of Geometry & Groundwater on Lateral Displacement of Liquefied Slopes", date: "2025 – present", venue: "Undergraduate Thesis — ITERA", status: "In progress", tags: ["Liquefaction", "FEM", "Slope Stability"], img: "/images/sph-fem.png", summary: "Parametric numerical study of how slope geometry and water-table depth shape lateral spreading in liquefiable ground under representative seismic loading." },
+        { slug: "palu-flowslide-analysis", title: "SPH Solver with FEM-Based GUI for Large-Deformation Simulation", date: "2025", venue: "Software — In progress", status: "In progress", tags: ["SPH", "FEM", "Fortran"], img: "/images/sph-fem.png", summary: "A Fortran F90 SPH engine paired with a FEM-style GUI for pre-processing, aimed at making large-deformation analysis more approachable." },
+      ],
+    },
+    {
+      topic: "Foundations & Soil Testing",
+      blurb: "Field testing and bearing-capacity of deep foundations.",
+      items: [
+        { slug: "bored-pile-pda", title: "Axial Bearing Capacity of Bored Piles on Tuff Soil — PDA Study", date: "2025", venue: "Media Konstruksi — SINTA 4", status: "Published", tags: ["Foundations", "PDA", "Tuff Soil"], img: "", summary: "A published study evaluating bored-pile performance in the volcanic tuff deposits of Lampung, comparing PDA-based dynamic tests with static analysis.", doi: "https://doi.org/10.33772/jmk.v10i1.112" },
+      ],
+    },
+    {
+      topic: "Marine & Offshore Geotechnics",
+      blurb: "Soil–structure interaction for marine foundations.",
+      items: [
+        { slug: "jetty-ssi-analysis", title: "Jetty Analysis — Fixity Point vs. Spring-Model Soil–Structure Interaction", date: "2025", venue: "G-Tech: Jurnal Teknologi Terapan — SINTA 4", status: "Published", tags: ["SSI", "Jetty", "Marine"], img: "", summary: "Comparative analysis of two approaches to jetty modelling, showing meaningful differences in predicted response and offering practical guidance for marine design.", doi: "https://doi.org/10.70609/g-tech.v9i3.6863" },
+      ],
+    },
+    {
+      topic: "Computational & Micro-Mechanics",
+      blurb: "Particle-scale modelling and meshfree methods.",
+      items: [
+        { slug: "clay-dem-simulation", title: "3D DEM Simulation of Saturation Effects on Clay Particle Packing", date: "2025 – present", venue: "Software — In progress", status: "In progress", tags: ["DEM", "Clay", "DLVO", "Fortran"], img: "", summary: "A Fortran F90 Discrete Element framework with full DLVO physicochemistry — modelling how saturation shapes the packing and fabric of clay platelets." },
+      ],
+    },
+  ],
+
+  // --- Publications (derived flat list) ---
   publications: [
     { title: "Kajian Daya Dukung Aksial Fondasi Tiang Bor pada Tanah Tufa Berdasarkan Uji PDA di Gedung Laboratorium Teknik 3 ITERA", journal: "Media Konstruksi (SINTA 4)", doi: "https://doi.org/10.33772/jmk.v10i1.112" },
     { title: "Analysis of Jetty Structure Using the Fixity Point Method and Soil–Structure Interaction via the Spring Model", journal: "G-Tech: Jurnal Teknologi Terapan (SINTA 4)", doi: "https://doi.org/10.70609/g-tech.v9i3.6863" },
   ],
 
-  // --- Experience ---
+  // --- Projects (field & professional work) ---
+  projectsFeatured: [
+    { slug: "way-besai-slope-failure", title: "Slope Failure Investigation — Way Besai Road Access", date: "Nov 2024", role: "Project Assistant", location: "Lampung", tags: ["Slope Failure", "Field"], tech: ["PLAXIS", "GeoStudio"], img: "", summary: "Site investigation, failure-mechanism analysis and remediation notes for a natural slope along road access to Way Besai." },
+    { slug: "andesite-mine-slope", title: "Slope Stability — Andesite Open-Pit Mine", date: "Oct 2024", role: "Analyst", location: "Lampung", tags: ["Slope Stability", "Mining"], tech: ["PLAXIS", "GeoStudio"], img: "/images/proj-andesite.png", summary: "Geotechnical slope-stability evaluation for an andesite open-pit, with factors of safety under several loading scenarios." },
+    { slug: "pekalongan-retention-pond", title: "Retention Pond Geotechnical Assessment", date: "Aug 2024", role: "Project Assistant · PT Tribina Wahana Cipta", location: "Pekalongan, Central Java", tags: ["Investigation"], tech: ["Lab Testing"], img: "", summary: "Coordinated soil investigation and lab testing, contributing to the geotechnical assessment of a retention-pond facility." },
+  ],
+
   experience: [
     { role: "Assistant Engineer", org: "PT Tribina Wahana Cipta, Lampung", date: "2024 – Present" },
-    { role: "Assistant Researcher — Civil Engineering", org: "Institut Teknologi Sumatera (ITERA)", date: "2024 – Present" },
-    { role: "Foundation Engineering Assistant", org: "ITERA — Civil Eng. Dept.", date: "2025" },
-    { role: "Soil Mechanics Lab Assistant", org: "ITERA Geotechnical Lab", date: "2024 – 2025" },
-    { role: "Project Assistant (MWT Engineering)", org: "PT MWT — Pindo Deli", date: "2024" },
-    { role: "HMS-ITERA Senate Staff", org: "Civil Eng. Student Association", date: "2023 – 2024" },
+    { role: "Foundation Engineering Assistant", org: "ITERA — Civil Eng. Dept.", date: "2026" },
+    { role: "Soil Mechanics Lab Assistant", org: "ITERA Geotechnical Lab", date: "2025" },
+    { role: "Engineering Apprentice (QC)", org: "PT MWT — Pindo Deli 4, Karawang", date: "Jun–Aug 2025" },
+    { role: "Head of Dept. of Professionalism", org: "HMS ITERA", date: "2025 – Present" },
+    { role: "Assistant Lecturer — Engineering Drawing", org: "ITERA Civil Eng.", date: "2024" },
+    { role: "HMS-ITERA Senate Staff", org: "Civil Eng. Student Association", date: "2024 – 2025" },
+  ],
+
+  activities: [
+    { caption: "ISF-ITERA International Event", img: "/images/act-1.jpg" },
+    { caption: "HMS-ITERA Organization", img: "/images/act-org.jpg" },
+    { caption: "Flood Study Collaboration", img: "/images/act-3.jpg" },
+    { caption: "MWT Engineering Apprenticeship", img: "/images/act-work.jpg" },
+    { caption: "Student Exchange Summer Camp", img: "/images/act-2.jpg" },
+    { caption: "Laboratory Visit", img: "/images/act-lab.jpg" },
   ],
 
   achievements: [
-    "Best and Most Inspiring Writer — Inspro Pustaka 2022",
+    "Best & Most Inspiring Writer — Inspro Pustaka 2022",
     "Top Winner — Booktalks Libtera Competition 2023",
     "Interview Finalist — IISMA 2024",
     "Top Participant — LKMM TD-IV ITERA 2024",
-    "3rd Place — English Debate Bulan Bahasa ITERA 2024",
+    "3rd Place — English Debate, Bulan Bahasa ITERA 2024",
   ],
 
   languages: [
@@ -79,28 +138,43 @@ export const siteConfig = {
   ],
 
   certifications: [
-    { name: "English Proficiency Certificate", issuer: "Duolingo English Test", date: "Jan 2024", expires: "Jan 2026" },
-    { name: "TOEFL ITP Prediction Test", issuer: "Global Operation Indonesia", date: "Jun 2023", score: "600" },
+    { name: "English Proficiency Certificate", issuer: "Duolingo English Test", date: "Jan 2024 – Jan 2026" },
+    { name: "TOEFL ITP Prediction Test", issuer: "Global Operation Indonesia", date: "Jun 2023 · Score 600" },
   ],
 
+  skillGroups: {
+    "Focus Areas": ["Foundation Engineering", "Slope Stability", "Geotechnical Forensics", "Soil Labs"],
+    "Numerical Methods": ["FEM", "DEM (beginner)", "SPH (beginner)", "MPM (beginner)"],
+    "Programming": ["Python", "MATLAB", "Fortran", "Julia", "JavaScript"],
+    "Geotechnical Software": ["PLAXIS", "GeoStudio", "Slide", "LPile", "GROUP"],
+    "Structural Software": ["SAP2000", "ETABS"],
+    "Drafting & Viz": ["AutoCAD", "SketchUp", "Revit", "Lumion", "ParaView"],
+    "Tools": ["Git", "LaTeX", "Three.js", "Photoshop", "Illustrator"],
+  },
+
+  // Legacy name kept for detail pages that import it
   skills: {
-    focusAreas: ["Foundation Engineering", "Slope Stability Analysis", "Geotechnical Forensics", "Soil Laboratories"],
     programming: ["Python", "MATLAB", "Fortran", "Julia", "JavaScript"],
     geotechnical: ["PLAXIS", "GeoStudio", "Slide (Rocscience)", "LPile", "GROUP"],
     structural: ["SAP2000", "ETABS"],
     drafting: ["AutoCAD", "SketchUp", "Revit", "Lumion"],
-    methods: ["FEM", "DEM (beginner)", "SPH (beginner)", "MPM (beginner)", "Coupled methods"],
+    methods: ["FEM", "DEM", "SPH", "MPM"],
     tools: ["Git", "LaTeX", "Three.js", "ParaView", "Adobe Photoshop", "Adobe Illustrator"],
   },
 
+  referees: [
+    { name: "Dr. Eng. Rahmat Kurniawan, S.T., M.T.", role: "Undergraduate Supervisor — ITERA", note: "Available upon request" },
+  ],
+
   affiliations: ["ASCE Student Member — Geo-Institute (G-I) (since 2022)"],
 
+  // Single-scroll navigation with anchors
   navLinks: [
-    { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    { label: "Research", href: "/research" },
-    { label: "Projects", href: "/projects" },
-    { label: "Activities", href: "/activities" },
-    { label: "Contact", href: "/contact" },
+    { label: "Home", href: "#home" },
+    { label: "Research", href: "#research" },
+    { label: "Projects", href: "#projects" },
+    { label: "Experience", href: "#activities" },
+    { label: "About", href: "#about" },
+    { label: "Contact", href: "#contact" },
   ],
 };

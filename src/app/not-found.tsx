@@ -1,9 +1,14 @@
 import Link from "next/link";
+
 export default function NotFound() {
-  return (<div className="min-h-screen flex items-center justify-center px-6"><div className="text-center">
-    <p className="text-6xl font-serif text-navy mb-4">404</p>
-    <h1 className="text-lg font-serif text-ink mb-2">Page Not Found</h1>
-    <p className="text-sm text-ink-muted mb-6">This page doesn&apos;t exist.</p>
-    <Link href="/" className="px-5 py-2 bg-navy text-white text-sm rounded-md hover:bg-navy-light transition-colors">Go Home</Link>
-  </div></div>);
+  return (
+    <div style={{ minHeight: "60vh", display: "flex", alignItems: "center", justifyContent: "center", padding: "120px 24px" }}>
+      <div style={{ textAlign: "center" }}>
+        <p className="display" style={{ fontSize: 96, margin: "0 0 8px" }}>404</p>
+        <h1 className="section-title" style={{ fontSize: 22 }}>Page not found</h1>
+        <p style={{ color: "var(--muted)", margin: "8px 0 24px", fontSize: 14 }}>This page doesn&apos;t exist.</p>
+        <Link href="/" className="btn btn-primary">Go Home</Link>
+      </div>
+    </div>
+  );
 }
